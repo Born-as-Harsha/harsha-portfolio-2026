@@ -9,9 +9,9 @@ const certs = [
     link: "https://drive.google.com/file/d/1_8t6CyJX4e_jX5Xio16DSP2hKUxf9CDu/view",
   },
   {
-    title: "Python for Everybody",
-    issuer: "Coursera",
-    link: "https://drive.google.com/file/d/1omA4JjK20t9Mh88zVzjbdZ9FMwrkG7mX/preview",
+  title: "Python for Everybody",
+  issuer: "Coursera",
+  link: "https://drive.google.com/file/d/1DB7qjdf9yYXJJkehCIIvmdZ9GQCkKg4_/preview",
   },
   {
     title: "Introduction to Hands-on Linux",
