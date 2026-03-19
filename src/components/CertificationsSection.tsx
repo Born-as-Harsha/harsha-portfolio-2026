@@ -11,7 +11,7 @@ const certs = [
   {
   title: "Python for Everybody",
   issuer: "Coursera",
-  link: "https://drive.google.com/file/d/1DB7qjdf9yYXJJkehCIIvmdZ9GQCkKg4_/preview",
+  link: "https://drive.google.com/file/d/1DB7qjdf9yYXJJkehCIIvmdZ9GQCkKg4_/view",
   },
   {
     title: "Introduction to Hands-on Linux",
