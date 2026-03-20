@@ -19,9 +19,14 @@ const certs = [
     link: "https://drive.google.com/file/d/1fraLG7sa1rmyCEZMkVvDS8iigQHh3041/view",
   },
   {
-    title: "Getting Started with Cisco Packet Tracer",
+    title: "Getting Started with Cisco Packet Trace",
     issuer: "Cisco Networking Academy",
     link: "https://drive.google.com/file/d/1nn-ssWiO05Qgyg8PYfewPKloba0X1OT-/view",
+  },
+  {
+    title: "Profession networking for carrier Growth",
+    issuer: "Hplife",
+    link: "https://drive.google.com/file/d/1TulsnnJ5T87S2-d6ayLkUbB1-cSwnxCf/view",
   },
 ];
 
