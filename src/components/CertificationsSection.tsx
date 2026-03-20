@@ -28,6 +28,16 @@ const certs = [
     issuer: "HP LIFE",
     link: "https://drive.google.com/file/d/1TulsnnJ5T87S2-d6ayLkUbB1-cSwnxCf/view",
   },
+  {
+    title: "Smart India Hackathon",
+    issuer: "KL University",
+    link: "https://drive.google.com/file/d/170wt9aE_ghZcd9KV0kRBUmv51qebdPbp/view",
+  },
+  {
+    title: "Trust and Security with Google Cloud",
+    issuer: "Google",
+    link: "https://drive.google.com/file/d/159oXDCDHC6DHZurHZy_pJpB9pr5TQ7uD/view",
+  },
 ];
 
 const CertificationsSection = () => {
@@ -36,20 +46,20 @@ const CertificationsSection = () => {
       <div className="max-w-4xl mx-auto">
         <SectionHeading title="Certifications" subtitle="cat ~/certs.log" />
 
-        <div className="space-y-4">
+        <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
           {certs.map((cert, i) => (
             <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 20 }}
+              key={`${cert.title}-${i}`}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-card/60 border border-border hover:border-primary/40 hover:shadow-md transition-all"
+              transition={{ delay: i * 0.08 }}
+              className="flex items-center gap-4 p-4 rounded-xl bg-card/60 border border-border hover:border-primary/40 hover:shadow-lg transition-all"
             >
-              <Award className="text-primary shrink-0" size={24} />
+              <Award className="text-primary shrink-0" size={26} />
 
               <div className="flex-1">
-                <h3 className="font-semibold text-foreground">
+                <h3 className="font-semibold text-foreground text-sm sm:text-base">
                   {cert.title}
                 </h3>
                 <p className="text-xs font-mono text-muted-foreground">
@@ -61,7 +71,7 @@ const CertificationsSection = () => {
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-mono rounded-md bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 transition-colors shrink-0"
+                className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono rounded-md bg-primary/10 text-primary border border-primary/30 hover:bg-primary/20 transition-colors"
                 aria-label={`View certificate: ${cert.title}`}
               >
                 <ExternalLink size={14} />
