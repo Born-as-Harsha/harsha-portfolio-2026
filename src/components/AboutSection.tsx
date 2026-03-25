@@ -5,9 +5,9 @@ import { Cpu, Zap, GraduationCap, BookOpen, Github, Linkedin, Mail } from "lucid
 const coursework = [
   "Analog VLSI",
   "Digital VLSI",
-  "Signals and Communication Systems",
+  "CMOS Circuit Design",
+  "Signals & Systems",
   "Digital Design & Computer Architecture",
-  "Communication Systems",
   "Microprocessors & Controllers",
 ];
 
@@ -15,33 +15,36 @@ const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-6 relative z-10">
       <div className="max-w-5xl mx-auto">
+
         <SectionHeading title="About Me" subtitle="profile.summary()" />
 
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="rounded-xl p-8 bg-card/80 backdrop-blur-sm border border-border shadow-lg"
+          className="rounded-xl p-8 bg-card/80 backdrop-blur-md border border-border shadow-lg hover:shadow-cyan-500/10 transition-all"
         >
+
           {/* PROFILE */}
           <p className="text-foreground/80 leading-relaxed mb-4">
-            I am a highly motivated <strong>Electronics and Communication Engineering student</strong> at 
-            <strong> KL University</strong> with a CGPA of <strong>9.8</strong>. I have a strong foundation in 
-            <strong> VLSI design, semiconductor devices, and digital electronics</strong>, along with basic experience 
-            in <strong>machine learning and data analysis</strong>.
+            I am an <strong>Electronics and Communication Engineering undergraduate</strong> at 
+            <strong> KL University</strong> with a CGPA of <strong>9.8</strong>, specializing in 
+            <strong> VLSI design and semiconductor systems</strong>.
           </p>
 
           <p className="text-foreground/80 leading-relaxed mb-6">
-            I am passionate about understanding transistor-level behavior, circuit design, and building 
-            efficient systems through simulation tools and programming. My career goal is to contribute 
-            to the <strong>semiconductor and VLSI industry</strong> by working on next-generation chip design.
+            My core interests include <strong>CMOS circuit design, analog and digital IC design</strong>, 
+            and <strong>transistor-level analysis</strong>. I have hands-on experience with simulation tools 
+            such as <strong>LTSpice</strong> and a strong foundation in <strong>device physics</strong>.
+            I am passionate about designing efficient, scalable integrated circuits for next-generation systems.
           </p>
 
           {/* CONTACT LINKS */}
           <div className="flex flex-wrap gap-4 mb-8">
             <a
               href="mailto:abhiharsha021@gmail.com"
-              className="flex items-center gap-2 text-sm font-mono text-primary hover:underline"
+              className="flex items-center gap-2 text-sm font-mono text-primary hover:text-cyan-400 transition"
             >
               <Mail size={16} /> Email
             </a>
@@ -50,7 +53,7 @@ const AboutSection = () => {
               href="https://linkedin.com/in/harshaabhi"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-mono text-primary hover:underline"
+              className="flex items-center gap-2 text-sm font-mono text-primary hover:text-cyan-400 transition"
             >
               <Linkedin size={16} /> LinkedIn
             </a>
@@ -59,7 +62,7 @@ const AboutSection = () => {
               href="https://github.com/Born-as-Harsha"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm font-mono text-primary hover:underline"
+              className="flex items-center gap-2 text-sm font-mono text-primary hover:text-cyan-400 transition"
             >
               <Github size={16} /> GitHub
             </a>
@@ -71,12 +74,12 @@ const AboutSection = () => {
               {
                 icon: Cpu,
                 label: "VLSI Design",
-                desc: "Digital & Analog IC Design",
+                desc: "CMOS, Analog & Digital IC Design",
               },
               {
                 icon: Zap,
                 label: "Semiconductors",
-                desc: "MOSFET & Device Physics",
+                desc: "MOSFET Modeling & Device Physics",
               },
               {
                 icon: GraduationCap,
@@ -86,9 +89,9 @@ const AboutSection = () => {
             ].map((item) => (
               <div
                 key={item.label}
-                className="text-center p-4 rounded-lg bg-muted/30 border border-border hover:border-primary/30 hover:shadow-md transition-all"
+                className="text-center p-5 rounded-xl bg-muted/30 border border-border hover:border-primary/40 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300"
               >
-                <item.icon className="mx-auto text-primary mb-2" size={28} />
+                <item.icon className="mx-auto text-primary mb-2" size={30} />
                 <h3 className="text-sm font-semibold text-foreground">
                   {item.label}
                 </h3>
@@ -112,13 +115,14 @@ const AboutSection = () => {
               {coursework.map((course) => (
                 <span
                   key={course}
-                  className="px-3 py-1 text-xs font-mono rounded-full bg-muted text-primary border border-primary/20"
+                  className="px-3 py-1 text-xs font-mono rounded-full bg-muted text-primary border border-primary/20 hover:bg-primary/10 transition"
                 >
                   {course}
                 </span>
               ))}
             </div>
           </div>
+
         </motion.div>
       </div>
     </section>
