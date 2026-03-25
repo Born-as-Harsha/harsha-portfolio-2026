@@ -3,9 +3,9 @@ import SectionHeading from "./SectionHeading";
 import { Github, GitBranch, Star, Code2 } from "lucide-react";
 
 const stats = [
-  { icon: Code2, label: "Repositories", value: "15+" },
-  { icon: Star, label: "Stars", value: "30+" },
-  { icon: GitBranch, label: "Contributions", value: "200+" },
+  { icon: Code2, label: "Repositories", value: "5+" },
+  { icon: Star, label: "Stars", value: "1+" },
+  { icon: GitBranch, label: "Contributions", value: "2+" },
 ];
 
 const GitHubSection = () => (
