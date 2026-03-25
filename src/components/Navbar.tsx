@@ -1,56 +1,107 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
-const links = ["About", "Skills", "Projects", "Certifications", "GitHub", "Contact"];
+const sections = [
+  "hero",
+  "about",
+  "skills",
+  "projects",
+  "certifications",
+  "github",
+  "resume",
+  "contact",
+];
 
 const Navbar = () => {
+  const [active, setActive] = useState("hero");
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
+  // Detect scroll for background blur
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      let current = "hero";
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (section) {
+          const offset = section.offsetTop - 100;
+          if (window.scrollY >= offset) {
+            current = id;
+          }
+        }
+      });
+      setActive(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
+    setOpen(false);
+  };
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background/70 border-b border-border">
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-        <a href="#hero" className="font-mono text-lg font-bold text-primary text-glow">
-          {"<YH />"}
-        </a>
-        <div className="hidden md:flex gap-8">
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? "backdrop-blur-lg bg-black/30 border-b border-white/10 shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+
+        {/* LOGO */}
+        <h1 className="text-xl font-bold text-cyan-400 cursor-pointer">
+          VLSI<span className="text-white">.dev</span>
+        </h1>
+
+        {/* DESKTOP MENU */}
+        <div className="hidden md:flex gap-6">
+          {sections.map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollTo(item)}
+              className={`capitalize text-sm font-mono transition-all ${
+                active === item
+                  ? "text-cyan-400 border-b-2 border-cyan-400"
+                  : "text-gray-400 hover:text-white"
+              }`}
             >
-              {l}
-            </a>
+              {item}
+            </button>
           ))}
         </div>
-        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+
+        {/* MOBILE MENU BUTTON */}
+        <div className="md:hidden">
+          <button onClick={() => setOpen(!open)}>
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden bg-card border-b border-border"
-          >
-            <div className="flex flex-col p-4 gap-4">
-              {links.map((l) => (
-                <a
-                  key={l}
-                  href={`#${l.toLowerCase()}`}
-                  onClick={() => setOpen(false)}
-                  className="font-mono text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {l}
-                </a>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+      {/* MOBILE MENU */}
+      {open && (
+        <div className="md:hidden bg-black/90 backdrop-blur-lg px-6 pb-6">
+          {sections.map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollTo(item)}
+              className={`block w-full text-left py-3 capitalize ${
+                active === item ? "text-cyan-400" : "text-gray-300"
+              }`}
+            >
+              {item}
+            </button>
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
