@@ -42,24 +42,28 @@ const Navbar = () => {
 
   const scrollTo = (id: string) => {
     const section = document.getElementById(id);
+
     if (section) {
       window.scrollTo({
         top: section.offsetTop - 80,
         behavior: "smooth",
       });
     }
+
     setOpen(false);
   };
 
   return (
     <nav
-  <div className="signal-line absolute bottom-0 left-0"></div>
       className={`relative fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
           ? "backdrop-blur-xl bg-black/40 border-b border-cyan-400/20 shadow-[0_0_20px_rgba(0,255,255,0.1)]"
           : "bg-transparent"
       }`}
     >
+      {/* ✅ SIGNAL LINE FIXED POSITION */}
+      <div className="signal-line absolute bottom-0 left-0 w-full"></div>
+
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
         {/* LOGO */}
@@ -72,7 +76,6 @@ const Navbar = () => {
 
         {/* DESKTOP MENU */}
         <div className="hidden md:flex gap-8 items-center relative">
-
           {sections.map((item) => (
             <button
               key={item}
@@ -85,14 +88,14 @@ const Navbar = () => {
             >
               {item}
 
-              {/* 🔥 Animated Underline */}
+              {/* UNDERLINE */}
               <span
                 className={`absolute left-0 -bottom-1 h-[2px] bg-cyan-400 transition-all duration-300 ${
                   active === item ? "w-full" : "w-0"
                 }`}
               ></span>
 
-              {/* 🔥 Glow Effect */}
+              {/* GLOW */}
               {active === item && (
                 <span className="absolute inset-0 blur-md bg-cyan-400/20 rounded"></span>
               )}
@@ -102,7 +105,7 @@ const Navbar = () => {
 
         {/* MOBILE BUTTON */}
         <div className="md:hidden">
-         <button onClick={() => setOpen(!open)} className="ripple">
+          <button onClick={() => setOpen(!open)} className="ripple">
             {open ? <X className="text-cyan-400" /> : <Menu />}
           </button>
         </div>
