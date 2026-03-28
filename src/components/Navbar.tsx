@@ -53,7 +53,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+  <div className="signal-line absolute bottom-0 left-0"></div>
+      className={`relative fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
           ? "backdrop-blur-xl bg-black/40 border-b border-cyan-400/20 shadow-[0_0_20px_rgba(0,255,255,0.1)]"
           : "bg-transparent"
@@ -64,7 +65,7 @@ const Navbar = () => {
         {/* LOGO */}
         <h1
           onClick={() => scrollTo("hero")}
-          className="text-xl font-bold text-cyan-400 cursor-pointer tracking-wide"
+          className="text-xl font-bold text-cyan-400 cursor-pointer tracking-wide ai-glow"
         >
           VLSI<span className="text-white">.dev</span>
         </h1>
@@ -76,7 +77,7 @@ const Navbar = () => {
             <button
               key={item}
               onClick={() => scrollTo(item)}
-              className={`relative capitalize text-sm font-mono transition-all duration-300 ${
+              className={`ripple relative capitalize text-sm font-mono transition-all duration-300 ${
                 active === item
                   ? "text-cyan-400"
                   : "text-gray-400 hover:text-white"
@@ -101,7 +102,7 @@ const Navbar = () => {
 
         {/* MOBILE BUTTON */}
         <div className="md:hidden">
-          <button onClick={() => setOpen(!open)}>
+         <button onClick={() => setOpen(!open)} className="ripple">
             {open ? <X className="text-cyan-400" /> : <Menu />}
           </button>
         </div>
