@@ -4,6 +4,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+/* ================= BASE THEME ================= */
+
 @layer base {
   :root {
     --background: 240 30% 5%;
@@ -27,70 +29,134 @@
     --accent: 186 100% 50%;
     --accent-foreground: 240 30% 5%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
     --border: 240 20% 18%;
     --input: 240 20% 18%;
     --ring: 186 100% 50%;
 
     --radius: 0.5rem;
 
-    --neon-glow: 0 0 10px hsl(186 100% 50% / 0.5), 0 0 30px hsl(186 100% 50% / 0.2);
-    --neon-glow-strong: 0 0 10px hsl(186 100% 50% / 0.8), 0 0 40px hsl(186 100% 50% / 0.4), 0 0 80px hsl(186 100% 50% / 0.1);
-    --purple-glow: 0 0 10px hsl(270 80% 60% / 0.5), 0 0 30px hsl(270 80% 60% / 0.2);
+    /* Glow Effects */
+    --neon-glow: 0 0 10px hsl(186 100% 50% / 0.5),
+                 0 0 30px hsl(186 100% 50% / 0.2);
 
-    --sidebar-background: 240 25% 8%;
-    --sidebar-foreground: 180 100% 95%;
-    --sidebar-primary: 186 100% 50%;
-    --sidebar-primary-foreground: 240 30% 5%;
-    --sidebar-accent: 240 20% 15%;
-    --sidebar-accent-foreground: 180 100% 95%;
-    --sidebar-border: 240 20% 18%;
-    --sidebar-ring: 186 100% 50%;
+    --neon-glow-strong: 0 0 10px hsl(186 100% 50% / 0.8),
+                        0 0 40px hsl(186 100% 50% / 0.4),
+                        0 0 80px hsl(186 100% 50% / 0.1);
+
+    --purple-glow: 0 0 10px hsl(270 80% 60% / 0.5),
+                   0 0 30px hsl(270 80% 60% / 0.2);
   }
 }
+
+/* ================= GLOBAL ================= */
 
 @layer base {
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground font-body;
-  }
+
   html {
     scroll-behavior: smooth;
   }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* ================= ELECTRICAL BACKGROUND ================= */
+
+  /* GRID (PCB STYLE) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(hsl(186 100% 50% / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(186 100% 50% / 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+  }
+
+  /* GLOWING CIRCUIT NODES */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, hsl(186 100% 50% / 0.15) 2px, transparent 2px),
+      radial-gradient(circle at 70% 60%, hsl(186 100% 50% / 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 40% 80%, hsl(186 100% 50% / 0.12) 2px, transparent 2px);
+    background-size: 120px 120px;
+    animation: pulseGrid 6s infinite ease-in-out;
+    z-index: -1;
+  }
 }
 
+/* ================= ANIMATIONS ================= */
+
+@keyframes pulseGrid {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-5px);
+  }
+  100% {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+}
+
+/* ================= UTILITIES ================= */
+
 @layer utilities {
+
+  /* TEXT GLOW */
   .text-glow {
     text-shadow: var(--neon-glow);
   }
+
   .text-glow-strong {
     text-shadow: var(--neon-glow-strong);
   }
+
   .text-glow-purple {
     text-shadow: var(--purple-glow);
   }
+
+  /* BOX GLOW */
   .box-glow {
     box-shadow: var(--neon-glow);
   }
+
   .box-glow-strong {
     box-shadow: var(--neon-glow-strong);
   }
+
+  /* NEON BORDER */
   .neon-border {
     @apply border border-primary/40;
-    box-shadow: inset 0 0 20px hsl(186 100% 50% / 0.05), var(--neon-glow);
+    box-shadow:
+      inset 0 0 20px hsl(186 100% 50% / 0.05),
+      var(--neon-glow);
   }
+
+  /* CIRCUIT GRID BG (for sections) */
   .grid-bg {
     background-image:
       linear-gradient(hsl(186 100% 50% / 0.03) 1px, transparent 1px),
       linear-gradient(90deg, hsl(186 100% 50% / 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  /* SMALL CIRCUIT DOT */
   .circuit-dot::before {
     content: '';
-    @apply absolute w-1.5 h-1.5 rounded-full bg-primary/30;
+    @apply absolute w-1.5 h-1.5 rounded-full bg-primary/40;
+    box-shadow: var(--neon-glow);
   }
 }
