@@ -25,7 +25,7 @@ const HeroSection = () => (
 
         <h1 className="text-5xl md:text-7xl font-bold font-body mb-4">
           <span className="text-foreground">Yelleti </span>
-          <span className="text-primary text-glow-strong">Harshavardhan</span>
+          <span className="text-primary font-semibold tracking-wide">Harshavardhan</span>
         </h1>
 
         <h2 className="text-xl md:text-2xl font-body text-foreground/80 mb-2">
