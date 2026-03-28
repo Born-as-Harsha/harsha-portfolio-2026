@@ -69,29 +69,29 @@
 
   /* GRID (PCB STYLE) */
   body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(hsl(186 100% 50% / 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(186 100% 50% / 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-    z-index: -2;
-  }
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(hsl(186 100% 50% / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(186 100% 50% / 0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -2;
+}
 
   /* GLOWING CIRCUIT NODES */
   body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 30%, hsl(186 100% 50% / 0.15) 2px, transparent 2px),
-      radial-gradient(circle at 70% 60%, hsl(186 100% 50% / 0.1) 2px, transparent 2px),
-      radial-gradient(circle at 40% 80%, hsl(186 100% 50% / 0.12) 2px, transparent 2px);
-    background-size: 120px 120px;
-    animation: pulseGrid 6s infinite ease-in-out;
-    z-index: -1;
-  }
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(0,255,255,0.25) 2px, transparent 2px),
+    radial-gradient(circle at 70% 40%, rgba(0,255,255,0.2) 2px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgba(0,255,255,0.2) 2px, transparent 2px);
+  background-size: 100px 100px;
+  animation: pulseGrid 4s infinite linear;
+  z-index: -1;
+}
 }
 
 /* ================= ANIMATIONS ================= */
@@ -144,15 +144,6 @@
       inset 0 0 20px hsl(186 100% 50% / 0.05),
       var(--neon-glow);
   }
-
-  /* CIRCUIT GRID BG (for sections) */
-  .grid-bg {
-    background-image:
-      linear-gradient(hsl(186 100% 50% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(186 100% 50% / 0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-  }
-
   /* SMALL CIRCUIT DOT */
   .circuit-dot::before {
     content: '';
