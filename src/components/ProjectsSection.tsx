@@ -16,11 +16,11 @@ const projects = [
     extra: ["Linear Regression", "Logistic Regression", "K-Means Clustering"],
   },
 
-  // ✅ NEW DJANGO PROJECT
+  // ⭐ FEATURED PROJECT
   {
     title: "Student Activity Management System",
     description:
-      "Developed a full-stack web application using Django to manage student activities, registrations, stalls, and achievements. Includes authentication system, admin dashboard, QR code generation, and email OTP verification.",
+      "Full-stack Django web application for managing student activities, registrations, stalls, and achievements with authentication, OTP verification, and admin dashboard.",
     tags: ["Django", "Python", "SQLite", "HTML", "CSS", "Bootstrap"],
     extra: [
       "Authentication System",
@@ -28,6 +28,9 @@ const projects = [
       "QR Code Generation",
       "Email OTP Verification",
     ],
+    featured: true,
+    impact:
+      "Automates student activity tracking and reduces manual coordination effort.",
     github: "https://github.com/Born-as-Harsha/Python-Full-Stack-Development",
     live: "https://harshaabhi.pythonanywhere.com",
   },
@@ -48,18 +51,32 @@ const ProjectsSection = () => (
             transition={{ delay: i * 0.15 }}
             className="group neon-border rounded-lg p-6 bg-card/80 backdrop-blur-sm hover:border-primary/60 transition-all duration-300"
           >
+            {/* ⭐ FEATURED BADGE */}
+            {project.featured && (
+              <span className="text-xs text-yellow-400 font-mono mb-2 inline-block">
+                ⭐ Featured Project
+              </span>
+            )}
+
             {/* TITLE */}
             <h3 className="font-body text-lg font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
               {project.title}
             </h3>
 
             {/* DESCRIPTION */}
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+            <p className="text-sm text-muted-foreground mb-2 leading-relaxed">
               {project.description}
             </p>
 
+            {/* 🚀 IMPACT */}
+            {project.impact && (
+              <p className="text-xs text-cyan-400 mb-3 font-mono">
+                🚀 {project.impact}
+              </p>
+            )}
+
             {/* TAGS */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-3">
               {project.tags.map((tag) => (
                 <span
                   key={tag}
@@ -70,7 +87,7 @@ const ProjectsSection = () => (
               ))}
             </div>
 
-            {/* EXTRA (Algorithms / Features) */}
+            {/* EXTRA FEATURES */}
             {project.extra && (
               <div className="mt-3 pt-3 border-t border-border">
                 <p className="text-xs text-muted-foreground font-mono mb-2">
@@ -89,7 +106,7 @@ const ProjectsSection = () => (
               </div>
             )}
 
-            {/* 🔗 LINKS (NEW FEATURE) */}
+            {/* 🔗 LINKS */}
             {(project.github || project.live) && (
               <div className="mt-4 flex gap-3">
                 {project.github && (
