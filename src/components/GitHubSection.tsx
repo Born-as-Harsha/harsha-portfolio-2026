@@ -7,11 +7,13 @@ interface Repo {
   id: number;
   name: string;
   description: string;
+  stargazers_count: number;
 }
 
 const GitHubSection = () => {
   const [repos, setRepos] = useState<Repo[]>([]);
   const [repoCount, setRepoCount] = useState(0);
+  const [totalStars, setTotalStars] = useState(0);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
@@ -26,7 +28,17 @@ const GitHubSection = () => {
         );
         const repoData = await repoRes.json();
 
+        // ✅ real repo count
         setRepoCount(userData.public_repos);
+
+        // ✅ calculate total stars dynamically
+        const stars = repoData.reduce(
+          (sum: number, repo: Repo) => sum + repo.stargazers_count,
+          0
+        );
+        setTotalStars(stars);
+
+        // show latest repos
         setRepos(repoData.slice(0, 4));
       } catch (error) {
         console.error("GitHub API error:", error);
@@ -37,9 +49,9 @@ const GitHubSection = () => {
   }, []);
 
   const stats = [
-    { icon: Code2, label: "Repositories", value: `${repoCount || 5}+` },
-    { icon: Star, label: "Stars", value: "1+" },
-    { icon: GitBranch, label: "Contributions", value: "307+" },
+    { icon: Code2, label: "Repositories", value: repoCount || "—" },
+    { icon: Star, label: "Total Stars", value: totalStars || "—" },
+    { icon: GitBranch, label: "Active Projects", value: repos.length || "—" },
   ];
 
   return (
@@ -87,6 +99,11 @@ const GitHubSection = () => {
                 </h3>
                 <p className="text-xs text-muted-foreground">
                   {repo.description || "No description available"}
+                </p>
+
+                {/* ⭐ stars per repo */}
+                <p className="text-xs text-yellow-400 mt-2 font-mono">
+                  ⭐ {repo.stargazers_count} stars
                 </p>
               </motion.div>
             ))
