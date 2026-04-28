@@ -1,27 +1,43 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import { Code2, Wrench, Cpu, Brain } from "lucide-react";
+import { Cpu, Wrench, Code2, Brain } from "lucide-react";
 
 const categories = [
   {
-    icon: Code2,
-    title: "Programming Languages",
-    skills: ["C", "Python"],
+    icon: Cpu,
+    title: "Core Electronics",
+    skills: [
+      "Digital Electronics",
+      "Analog Circuits",
+      "CMOS Design",
+      "Semiconductor Devices",
+    ],
   },
   {
     icon: Wrench,
-    title: "EDA & Simulation Tools",
-    skills: ["NI Multisim", "LTspice", "Cadence", "EasyEDA", "Cisco Packet Tracer"],
+    title: "VLSI & Simulation Tools",
+    skills: [
+      "LTspice",
+      "NI Multisim",
+      "Cadence (Basics)",
+      "EasyEDA",
+    ],
   },
   {
-    icon: Cpu,
-    title: "Technologies",
-    skills: ["VLSI Design", "CMOS Technology", "Semiconductor Devices", "Digital Electronics"],
+    icon: Code2,
+    title: "Programming",
+    skills: ["C", "Python"],
   },
   {
     icon: Brain,
     title: "Machine Learning",
-    skills: ["NumPy", "Pandas", "Matplotlib", "Linear Regression", "Logistic Regression", "K-Means Clustering"],
+    skills: [
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Linear Regression",
+      "K-Means",
+    ],
   },
 ];
 
@@ -29,6 +45,7 @@ const SkillsSection = () => (
   <section id="skills" className="py-24 px-6 relative z-10">
     <div className="max-w-5xl mx-auto">
       <SectionHeading title="Skills" subtitle="tech_stack.json" />
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {categories.map((cat, i) => (
           <motion.div
@@ -41,13 +58,16 @@ const SkillsSection = () => (
           >
             <div className="flex items-center gap-3 mb-4">
               <cat.icon className="text-primary" size={24} />
-              <h3 className="font-body text-lg font-semibold text-foreground">{cat.title}</h3>
+              <h3 className="font-body text-lg font-semibold text-foreground">
+                {cat.title}
+              </h3>
             </div>
+
             <div className="flex flex-wrap gap-2">
               {cat.skills.map((skill) => (
                 <span
                   key={skill}
-                  className="px-3 py-1.5 text-xs font-mono rounded bg-muted text-primary border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-colors cursor-default"
+                  className="px-3 py-1.5 text-xs font-mono rounded bg-muted text-primary border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-colors"
                 >
                   {skill}
                 </span>
