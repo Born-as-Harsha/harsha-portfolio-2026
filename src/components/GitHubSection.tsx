@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import { Github, GitBranch, Star, Code2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 interface Repo {
   id: number;
@@ -17,16 +16,18 @@ const GitHubSection = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        const userRes = await axios.get(
+        const userRes = await fetch(
           "https://api.github.com/users/Born-as-Harsha"
         );
+        const userData = await userRes.json();
 
-        const repoRes = await axios.get(
+        const repoRes = await fetch(
           "https://api.github.com/users/Born-as-Harsha/repos?sort=updated"
         );
+        const repoData = await repoRes.json();
 
-        setRepoCount(userRes.data.public_repos);
-        setRepos(repoRes.data.slice(0, 4)); // show top 4 repos
+        setRepoCount(userData.public_repos);
+        setRepos(repoData.slice(0, 4));
       } catch (error) {
         console.error("GitHub API error:", error);
       }
@@ -36,9 +37,9 @@ const GitHubSection = () => {
   }, []);
 
   const stats = [
-    { icon: Code2, label: "Repositories", value: `${repoCount}+` },
-    { icon: Star, label: "Stars", value: "1+" }, // GitHub API needs extra call for stars
-    { icon: GitBranch, label: "Contributions", value: "307+" }, // static (GitHub API limitation)
+    { icon: Code2, label: "Repositories", value: `${repoCount || 5}+` },
+    { icon: Star, label: "Stars", value: "1+" },
+    { icon: GitBranch, label: "Contributions", value: "307+" },
   ];
 
   return (
@@ -69,25 +70,31 @@ const GitHubSection = () => {
           ))}
         </div>
 
-        {/* LIVE REPOS */}
+        {/* REPOS */}
         <div className="grid md:grid-cols-2 gap-6 mb-10">
-          {repos.map((repo, i) => (
-            <motion.div
-              key={repo.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="p-5 rounded-lg neon-border bg-card/80 hover:scale-[1.02] transition"
-            >
-              <h3 className="text-primary font-semibold text-sm mb-2">
-                {repo.name}
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                {repo.description || "No description available"}
-              </p>
-            </motion.div>
-          ))}
+          {repos.length > 0 ? (
+            repos.map((repo, i) => (
+              <motion.div
+                key={repo.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-5 rounded-lg neon-border bg-card/80 hover:scale-[1.02] transition"
+              >
+                <h3 className="text-primary font-semibold text-sm mb-2">
+                  {repo.name}
+                </h3>
+                <p className="text-xs text-muted-foreground">
+                  {repo.description || "No description available"}
+                </p>
+              </motion.div>
+            ))
+          ) : (
+            <p className="text-center text-muted-foreground col-span-2">
+              Loading GitHub data...
+            </p>
+          )}
         </div>
 
         {/* BUTTON */}
