@@ -29,7 +29,7 @@ const AboutSection = () => {
           {/* PROFILE */}
           <p className="text-foreground/80 leading-relaxed mb-4">
             I am an <strong>Electronics and Communication Engineering undergraduate</strong> at 
-            <strong> KL University</strong> with a CGPA of <strong>9.8</strong>, specializing in 
+            <strong> KL University</strong> with a CGPA of <strong>9.68</strong>, specializing in 
             <strong> VLSI design and semiconductor systems</strong>.
           </p>
 
@@ -84,7 +84,7 @@ const AboutSection = () => {
               {
                 icon: GraduationCap,
                 label: "KL University",
-                desc: "B.Tech ECE — CGPA 9.8",
+                desc: "B.Tech ECE — CGPA 9.68",
               },
             ].map((item) => (
               <div
